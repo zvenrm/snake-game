@@ -1,0 +1,71 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.main {
+    background: radial-gradient(circle, rgba(20,0,124,1) 0%, rgba(87,0,119,1) 77%);
+}
+.container {
+    width: 1440px;
+    margin: 0 auto;
+}
+.main-container {
+    height: calc(100vh - 70px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.game-field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    width: 500px;
+}
+.canvas {
+    display: block;
+    border: 5px solid rgb(210, 255, 168);
+}
+
+.footer{
+    background-color: #000;
+}
+
+.footer-container{
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.year {
+    margin: 0 20px;
+}
+
+.github-link {
+    text-decoration: none;
+    color: #fff;
+    margin-right: 18px;
+    transition: 0.3s;
+}
+
+.github-link:hover {
+    color: rgb(180, 0, 0);
+}
+
+.rs{
+    height: 60px;
+    width: 160px;
+    fill: #fff;
+    transition: 0.3s;
+}
+
+.rs:hover{
+    fill: rgb(180, 0, 0);
+}
