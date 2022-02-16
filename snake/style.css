@@ -11,26 +11,66 @@
     background: radial-gradient(circle, rgba(20,0,124,1) 0%, rgba(87,0,119,1) 77%);
 }
 .container {
-    width: 1440px;
+    max-width: 1440px;
     margin: 0 auto;
 }
 .main-container {
-    height: calc(100vh - 70px);
+    min-height: calc(100vh - 70px);
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
 }
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 50px;
+}
+
 .game-field {
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 500px;
-    width: 500px;
+    flex-direction: column;
+    height: 550px;
+    width: 550px;
+    /* border: 1px solid red; */
 }
+
+.score{
+    width: 400px;
+    height: 50px;
+}
+
 .canvas {
     display: block;
-    border: 5px solid rgb(210, 255, 168);
+    box-shadow: 0 0 10px 5px rgb(0, 255, 60);
+    border-radius: 10px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+    height: 70px;
+}
+.button {
+    width: 125px;
+    height: 40px;
+    border: none;
+    box-shadow: 0 0 10px 5px rgb(0, 255, 60);
+    border-radius: 10px;
+    background-color: rgb(143, 255, 169);
+    color: #000;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button:hover{
+    background-color: rgb(78, 252, 118);
+}
+
+.button:active{
+    transform: scale(0.9, 0.9);
 }
 
 .footer{

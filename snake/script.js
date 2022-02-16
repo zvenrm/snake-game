@@ -1,9 +1,12 @@
 const canvas = document.querySelector('.canvas')
 const ctx = canvas.getContext('2d')
+const showScore = document.querySelector('.score-val')
+const playBtn = document.querySelector('.play-button')
 
 let cellSize = 20 //размер ячейки
 let cellCnt = canvas.width / cellSize //количество ячеек в канвасе
 let dir
+let score = 0
 //скорость змейки
 let snakeSpeed = {
     x: 0,
@@ -12,8 +15,8 @@ let snakeSpeed = {
 
 //координаты еды
 let food = {
-    x: 17,
-    y: 10
+    x: Math.floor(Math.random() * cellCnt),
+    y: Math.floor(Math.random() * cellCnt)
 }
 
 
@@ -39,6 +42,7 @@ function drawSnake(){
     for (let i = 0; i < snake.length; i++){
         ctx.fillStyle = i === snake.length - 1 ? '#ff0000' : '#00A300'
         ctx.fillRect(snake[i].x * cellSize, snake[i].y * cellSize, cellSize - 2, cellSize - 2)
+        
         if (snake[i].x === snakeHead.x && snake[i].y === snakeHead.y && snake.length > 1){
             clearInterval(game)
         }
@@ -88,9 +92,11 @@ function snakeBodyUpdate(){
 //поедание еды
 function eatFood(){
     if (food.x === snakeHead.x && food.y === snakeHead.y){
-        snakeWidth += 1
+        snakeWidth += 1 
         food.x = Math.floor(Math.random() * cellCnt)
         food.y = Math.floor(Math.random() * cellCnt)
+        score += 10
+        showScore.textContent = score
     }
 }
 
@@ -117,6 +123,8 @@ function onKeyDown(e){
         snakeSpeed.y = 1
     }
 }
+    
+
 
 function gameUpdate (){
     snakeHeadUpdate()
@@ -132,3 +140,23 @@ function gameUpdate (){
 document.addEventListener('keydown', onKeyDown)
 
 let game = setInterval(gameUpdate, 100)
+
+
+playBtn.addEventListener('click', () => {
+    clearInterval(game)
+    dir = 'down'
+    snakeSpeed.x = 0
+    snakeSpeed.y = 1
+    snake = []
+    snakeHead = {
+        x: 10,
+        y: 10
+    }
+
+    snakeWidth = 1
+    food = {
+        x: Math.floor(Math.random() * cellCnt),
+        y: Math.floor(Math.random() * cellCnt)
+    }
+    game = setInterval(gameUpdate, 100)
+})
