@@ -1,7 +1,11 @@
 const canvas = document.querySelector('.canvas')
 const ctx = canvas.getContext('2d')
 const showScore = document.querySelector('.score-val')
+const finalScore = document.querySelector('.final-score')
 const playBtn = document.querySelector('.play-button')
+const pauseBtn = document.querySelector('.pause-button')
+const resultField = document.querySelector('.result-field')
+const winLose = document.querySelector('.win-lose')
 
 let cellSize = 20 //размер ячейки
 let cellCnt = canvas.width / cellSize //количество ячеек в канвасе
@@ -45,8 +49,16 @@ function drawSnake(){
         
         if (snake[i].x === snakeHead.x && snake[i].y === snakeHead.y && snake.length > 1){
             clearInterval(game)
+            canvas.classList.add('canvas-none')
+            resultField.classList.add('result-block')
+            finalScore.textContent = score
         }
-        
+        else if(snake.length === cellCnt * cellCnt){
+            canvas.classList.add('canvas-none')
+            resultField.classList.add('result-block')
+            finalScore.textContent = score
+            winLose.textContent = 'You win!!!!'
+        }
     }
 }
 
@@ -102,6 +114,7 @@ function eatFood(){
 
 //нажатие стрелок
 function onKeyDown(e){
+    playBtn.textContent = 'Restart'
     if(e.keyCode === 37 && dir != 'right'){
         dir = 'left'
         snakeSpeed.x = -1
@@ -143,7 +156,14 @@ let game = setInterval(gameUpdate, 100)
 
 
 playBtn.addEventListener('click', () => {
+    canvas.classList.remove('canvas-none')
+    resultField.classList.remove('result-block')
+    playBtn.textContent = 'Restart'
+    pauseBtn.textContent = 'Pause'
+    score = 0
+    showScore.textContent = 0
     clearInterval(game)
+
     dir = 'down'
     snakeSpeed.x = 0
     snakeSpeed.y = 1
@@ -159,4 +179,20 @@ playBtn.addEventListener('click', () => {
         y: Math.floor(Math.random() * cellCnt)
     }
     game = setInterval(gameUpdate, 100)
+})
+
+pauseBtn.addEventListener('click', (e) => {
+    
+    if(playBtn.textContent === 'Play'){
+        e.preventDefault()
+    }
+    else if(pauseBtn.textContent === 'Pause'){
+        clearInterval(game)
+        pauseBtn.textContent = 'Play'
+    }
+    else{
+        game = setInterval(gameUpdate, 100)
+        pauseBtn.textContent = 'Pause'
+    }
+    
 })
