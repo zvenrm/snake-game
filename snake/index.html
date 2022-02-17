@@ -15,6 +15,26 @@
     <main class="main">
         <div class="container main-container">
             <h1>Snake game</h1>
+            <div class="menu">
+                <button class="menu-button menu__play-button">Play</button>
+                <button class="menu-button menu__options-button">Options</button>
+                <button class="menu-button menu__control-button">Control</button>
+            </div>
+            <div class="options">
+                <div class="opt-item field-size">
+                    <p class="options-text size-text">Size of the field: <span class="size-val">20</span></p>
+                    <input class="options-input size-input" type="range" min="1" max="10" value="2">
+                </div>
+                <div class="opt-item snake-speed">
+                    <p class="options-text speed-text">Speed of the snake: <span>20</span></p>
+                    <input class="options-input" type="range" min="1" max="10" value="2">
+                </div>
+                <div class="opt-item mode">
+                    <p class="options-text mode-text">Game mode:</p>
+                    <input class="options-input" type="range">
+                </div>
+                <button class="menu-button back-button">Back to menu</button>
+            </div>
             <div class="game-field">
                 <div class="score">Score: <span class="score-val">0</span></div>
                 <canvas class="canvas" width="400" height="400"></canvas>
@@ -23,9 +43,9 @@
                     <p class="your-score">Score: <span class="final-score">0</span></p>
                 </div>
                 <div class="buttons">
-                    <button class="button play-button">Play</button>
+                    <button class="button play-button">Start</button>
                     <button class="button pause-button">Pause</button>
-                    <button class="button">Menu</button>
+                    <button class="button menu-btn">Menu</button>
                 </div>
             </div>
             
