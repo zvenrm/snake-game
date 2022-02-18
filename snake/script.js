@@ -2,6 +2,9 @@ const menu = document.querySelector('.menu')
 const audio = document.querySelector('.audio')
 const options = document.querySelector('.options')
 const controls = document.querySelector('.controls')
+const volButtons = document.querySelector('.volume-buttons')
+const volPause = document.querySelector('.volume-pause')
+const volUp = document.querySelector('.volume-up')
 const gameField = document.querySelector('.game-field')
 const canvas = document.querySelector('.canvas')
 const ctx = canvas.getContext('2d')
@@ -260,6 +263,7 @@ function onKeyDown(e){
             volInput.value = String(+volInput.value - 1)
             volVal.textContent = volInput.value * 10
             audio.volume = +volInput.value / 10
+            volUp.classList.remove('volume-mute')
             audio.muted = false  
         }
         else if(audio.volume > 0.1 && audio.muted === false){
@@ -268,21 +272,25 @@ function onKeyDown(e){
             audio.volume = +volInput.value / 10
         }
         else if (audio.volume === 0.1 && audio.muted === false){
+            volUp.classList.add('volume-mute')
             audio.muted = true
         }
         else{
+            volUp.classList.add('volume-mute')
             audio.muted = true
         }
         console.log(audio.volume)
     }
     else if(e.keyCode === 88){
         if (audio.volume === 0.1 && audio.muted === true){
+            volUp.classList.remove('volume-mute')
             audio.muted = false
         }
         else if (audio.volume < 1 && audio.muted === true){
             volInput.value = String(+volInput.value + 1)
             volVal.textContent = volInput.value * 10
             audio.volume = +volInput.value / 10
+            volUp.classList.remove('volume-mute')
             audio.muted = false  
         }
         else if(audio.volume < 1 && audio.muted === false){
@@ -291,9 +299,11 @@ function onKeyDown(e){
             audio.volume = +volInput.value / 10
         }
         else if (audio.volume === 1 && audio.muted === true){
+            volUp.classList.remove('volume-mute')
             audio.muted = false
         }
         else{
+            volUp.classList.remove('volume-mute')
             audio.muted = false
         }
         console.log(audio.volume)
@@ -404,9 +414,13 @@ menuBtn.addEventListener('click', () => {
 })
 
 menuPlayBtn.addEventListener('click', () => {
+    if (!volPause.classList.contains('volume-play')){
+        audio.play()
+    }
     menu.classList.add('menu-none')
     gameField.classList.add('game-block')
-    audio.play()
+    volButtons.classList.add('volume-block')
+    
 })
 
 menuOptBtn.addEventListener('click', () => {
@@ -442,4 +456,24 @@ sizeInput.addEventListener('input', () => {
 volInput.addEventListener('input', () => {
     volVal.textContent = volInput.value * 10
     audio.volume = volInput.value / 10
+})
+
+volPause.addEventListener('click', () => {
+    volPause.classList.toggle('volume-play')
+    if (volPause.classList.contains('volume-play')){
+        audio.pause()
+    }
+    else{
+        audio.play()
+    }
+})
+
+volUp.addEventListener('click', () => {
+    volUp.classList.toggle('volume-mute')
+    if (volUp.classList.contains('volume-mute')){
+        audio.muted = true
+    }
+    else{
+        audio.muted = false
+    }
 })

@@ -15,7 +15,7 @@
     margin: 0 auto;
 }
 .main-container {
-    padding-top: 30px;
+    padding-top: 20px;
     min-height: calc(100vh - 70px);
     display: flex;
     align-items: center;
@@ -25,6 +25,56 @@
 h1 {
     font-size: 36px;
     margin-bottom: 20px;
+}
+
+.volume-buttons {
+    display: none;
+    justify-content: space-between;
+    width: 80px;
+}
+
+.volume-block{
+    display: flex;
+}
+
+.vol-btn{
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    /* border: 1px solid red; */
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.vol-btn:hover{
+    transform: scale(1.05, 1.05);
+}
+
+.vol-btn:active{
+    transform: scale(0.9, 0.9);
+}
+
+.vol-btn:focus{
+    outline: none;
+}
+
+.volume-pause {
+    background-image: url("./assets/svg/pause.svg");
+}
+
+.volume-play {
+    background-image: url("./assets/svg/play.svg");
+}
+
+.volume-up {
+    background-image: url("./assets/svg/vol-up.svg");
+}
+
+.volume-mute {
+    background-image: url("./assets/svg/vol-mute.svg");
 }
 
 .menu{
@@ -172,7 +222,7 @@ h1 {
     display: none;
     align-items: center;
     flex-direction: column;
-    height: 550px;
+    height: 500px;
     width: 550px;
 }
 
@@ -182,7 +232,7 @@ h1 {
 
 .score{
     width: 400px;
-    height: 50px;
+    height: 30px;
 }
 
 .canvas {
