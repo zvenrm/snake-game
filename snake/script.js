@@ -195,7 +195,7 @@ function onKeyDown(e){
         }
         else{
             pause = false
-            game = setInterval(gameUpdate, 100)
+            game = setInterval(gameUpdate, 130)
             pauseBtn.textContent = 'Pause'
         }
     }
@@ -222,7 +222,7 @@ function onKeyDown(e){
             x: Math.floor(Math.random() * cellCnt),
             y: Math.floor(Math.random() * cellCnt)
         }
-        game = setInterval(gameUpdate, 100)
+        game = setInterval(gameUpdate, 130)
     }
     else if (e.keyCode === 27){
         clearInterval(game)
@@ -256,7 +256,7 @@ function onKeyDown(e){
         }
 
         snakeWidth = 1
-        game = setInterval(gameUpdate, 100)
+        game = setInterval(gameUpdate, 130)
     }
     else if(e.keyCode === 90){
         if (audio.volume > 0.1 && audio.muted === true){
@@ -312,7 +312,7 @@ function onKeyDown(e){
 
 function isPauseTrue(){
     if(pause === true && checkKey === 0){
-        game = setInterval(gameUpdate, 100)
+        game = setInterval(gameUpdate, 130)
         checkKey = 1
     }
 }
@@ -330,7 +330,7 @@ function gameUpdate (){
 
 document.addEventListener('keydown', onKeyDown)
 
-let game = setInterval(gameUpdate, 100)
+let game = setInterval(gameUpdate, 130)
 
 
 playBtn.addEventListener('click', () => {
@@ -356,7 +356,7 @@ playBtn.addEventListener('click', () => {
         x: Math.floor(Math.random() * cellCnt),
         y: Math.floor(Math.random() * cellCnt)
     }
-    game = setInterval(gameUpdate, 100)
+    game = setInterval(gameUpdate, 130)
 })
 
 pauseBtn.addEventListener('click', (e) => {
@@ -372,7 +372,7 @@ pauseBtn.addEventListener('click', (e) => {
     }
     else{
         pause = false
-        game = setInterval(gameUpdate, 100)
+        game = setInterval(gameUpdate, 130)
         pauseBtn.textContent = 'Pause'
     }
     
@@ -410,7 +410,7 @@ menuBtn.addEventListener('click', () => {
     }
     
     snakeWidth = 1
-    game = setInterval(gameUpdate, 100)
+    game = setInterval(gameUpdate, 130)
 })
 
 menuPlayBtn.addEventListener('click', () => {
