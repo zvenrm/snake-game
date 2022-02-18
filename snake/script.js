@@ -24,6 +24,8 @@ const volVal = document.querySelector('.volume-val')
 const volInput = document.querySelector('.volume-input')
 const resultField = document.querySelector('.result-field')
 const winLose = document.querySelector('.win-lose')
+const speedInput = document.querySelector('.speed-input')
+const speedVal = document.querySelector('.speed-val')
 
 audio.volume = 0.2
 let cellSize = 20 //размер ячейки
@@ -33,6 +35,28 @@ let dir,
     pause,
     checkKey = 0
 
+speedInput.addEventListener('input', () => {
+    if (speedInput.value === '1'){
+        speed = 200
+        speedVal.textContent = '10'
+        clearInterval(game)
+        game = setInterval(gameUpdate, speed)
+    }
+    else if (speedInput.value === '3'){
+        speed = 80
+        speedVal.textContent = '30'
+        clearInterval(game)
+        game = setInterval(gameUpdate, speed)
+    }
+    else if(speedInput.value === '2'){
+        speed = 130
+        speedVal.textContent = '20'
+        clearInterval(game)
+        game = setInterval(gameUpdate, speed)
+    }
+})
+
+let speed = 130
 let redColor = [255, 0, 0]
 let greenColor = [0, 163, 0]
     //скорость змейки
@@ -195,7 +219,7 @@ function onKeyDown(e){
         }
         else{
             pause = false
-            game = setInterval(gameUpdate, 130)
+            game = setInterval(gameUpdate, speed)
             pauseBtn.textContent = 'Pause'
         }
     }
@@ -222,7 +246,7 @@ function onKeyDown(e){
             x: Math.floor(Math.random() * cellCnt),
             y: Math.floor(Math.random() * cellCnt)
         }
-        game = setInterval(gameUpdate, 130)
+        game = setInterval(gameUpdate, speed)
     }
     else if (e.keyCode === 27){
         clearInterval(game)
@@ -256,7 +280,7 @@ function onKeyDown(e){
         }
 
         snakeWidth = 1
-        game = setInterval(gameUpdate, 130)
+        game = setInterval(gameUpdate, speed)
     }
     else if(e.keyCode === 90){
         if (audio.volume > 0.1 && audio.muted === true){
@@ -312,7 +336,7 @@ function onKeyDown(e){
 
 function isPauseTrue(){
     if(pause === true && checkKey === 0){
-        game = setInterval(gameUpdate, 130)
+        game = setInterval(gameUpdate, speed)
         checkKey = 1
     }
 }
@@ -330,7 +354,7 @@ function gameUpdate (){
 
 document.addEventListener('keydown', onKeyDown)
 
-let game = setInterval(gameUpdate, 130)
+let game = setInterval(gameUpdate, speed)
 
 
 playBtn.addEventListener('click', () => {
@@ -356,7 +380,7 @@ playBtn.addEventListener('click', () => {
         x: Math.floor(Math.random() * cellCnt),
         y: Math.floor(Math.random() * cellCnt)
     }
-    game = setInterval(gameUpdate, 130)
+    game = setInterval(gameUpdate, speed)
 })
 
 pauseBtn.addEventListener('click', (e) => {
@@ -372,7 +396,7 @@ pauseBtn.addEventListener('click', (e) => {
     }
     else{
         pause = false
-        game = setInterval(gameUpdate, 130)
+        game = setInterval(gameUpdate, speed)
         pauseBtn.textContent = 'Pause'
     }
     
@@ -410,7 +434,7 @@ menuBtn.addEventListener('click', () => {
     }
     
     snakeWidth = 1
-    game = setInterval(gameUpdate, 130)
+    game = setInterval(gameUpdate, speed)
 })
 
 menuPlayBtn.addEventListener('click', () => {
