@@ -12,6 +12,7 @@
     <title>Snake</title>
 </head>
 <body>
+    <audio class="audio" src="./assets/audio/audio.mp3" loop></audio>
     <main class="main">
         <div class="container main-container">
             <h1>Snake game</h1>
@@ -25,15 +26,19 @@
                     <p class="options-text size-text">Size of the field: <span class="size-val">20</span></p>
                     <input class="options-input size-input" type="range" min="1" max="10" value="2">
                 </div>
-                <div class="opt-item snake-speed">
-                    <p class="options-text speed-text">Speed of the snake: <span>20</span></p>
-                    <input class="options-input" type="range" min="1" max="10" value="2">
-                </div>
-                <div class="opt-item mode">
-                    <p class="options-text mode-text">Game mode:</p>
-                    <input class="options-input" type="range">
+                <div class="opt-item volume">
+                    <p class="options-text volume-text">Volume: <span class="volume-val">20</span></p>
+                    <input class="options-input volume-input" type="range" min="1" max="10" value="2">
                 </div>
                 <button class="menu-button back-button">Back to menu</button>
+            </div>
+            <div class="controls">
+                <p class="arrows">Press the <span>←</span> <span>↑</span> <span>→</span> <span>↓</span> buttons to control the snake</p>
+                <p>Press <span class="PR">P</span> for pause and resume</p>
+                <p>Press <span class="PR">R</span> for restart</p>
+                <p>Press <span class="PR">Esc</span> for menu</p>
+                <p>Press <span class="PR">Z</span> and <span class="PR">X</span> for volume control</p>
+                <button class="menu-button back-button-ctrl">Back to menu</button>
             </div>
             <div class="game-field">
                 <div class="score">Score: <span class="score-val">0</span></div>
