@@ -43,7 +43,6 @@ h1 {
     height: 30px;
     background-color: transparent;
     border: none;
-    /* border: 1px solid red; */
     background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;
@@ -96,9 +95,8 @@ h1 {
 }
 
 .total-score{
-    width: 250px;
-    height: 450px;
-    border: 1px solid red;
+    width: 180px;
+    height: 370px;
 }
 
 .fake-block{

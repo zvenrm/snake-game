@@ -32,11 +32,11 @@ const bestVal = document.querySelector('.best-val')
 
 function getLocalStorage() {
     if(localStorage.getItem('table')){
-        localStorage.getItem('table').split(',').forEach(el => {
+        for (let i = 0; i < localStorage.getItem('table').split(',').length; i++){
             let par = document.createElement('p')
-            par.innerHTML = `${localStorage.getItem('table').split(',').indexOf(el) + 1}. ${el}`
+            par.innerHTML = `${i + 1}. ${localStorage.getItem('table').split(',')[i]}`
             currTable.appendChild(par)
-        })
+        }
     }
 }
 window.addEventListener('load', getLocalStorage)
