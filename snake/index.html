@@ -38,7 +38,6 @@
                     <p class="options-text volume-text">Volume: <span class="volume-val">20</span></p>
                     <input class="options-input volume-input" type="range" min="1" max="10" value="2">
                 </div>
-                
                 <button class="menu-button back-button">Back to menu</button>
             </div>
             <div class="controls">
@@ -49,20 +48,28 @@
                 <p>Press <span class="PR">Z</span> and <span class="PR">X</span> for volume control</p>
                 <button class="menu-button back-button-ctrl">Back to menu</button>
             </div>
-            <div class="game-field">
-                <div class="score">Score: <span class="score-val">0</span></div>
-                <canvas class="canvas" width="400" height="400"></canvas>
-                <div class="result-field">
-                    <p class="win-lose">You Lose</p>
-                    <p class="your-score">Score: <span class="final-score">0</span></p>
+            <div class="game-content">
+                <div class="total-score current-block">
+                    <p class="best">Your best: <span class="best-val"></span></p>
+                    <p class="last">Last scores:</p>
+                    <div class="score-list">
+                    </div>
                 </div>
-                <div class="buttons">
-                    <button class="button play-button">Start</button>
-                    <button class="button pause-button">Pause</button>
-                    <button class="button menu-btn">Menu</button>
+                <div class="game-field">
+                    <div class="score">Score: <span class="score-val">0</span></div>
+                    <canvas class="canvas" width="400" height="400"></canvas>
+                    <div class="result-field">
+                        <p class="win-lose">You Lose</p>
+                        <p class="your-score">Score: <span class="final-score">0</span></p>
+                    </div>
+                    <div class="buttons">
+                        <button class="button play-button">Start</button>
+                        <button class="button pause-button">Pause</button>
+                        <button class="button menu-btn">Menu</button>
+                    </div>
                 </div>
+                <div class="total-score fake-block"></div>
             </div>
-            
         </div>
     </main>
     <footer class="footer">

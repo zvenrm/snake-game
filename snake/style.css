@@ -15,6 +15,7 @@
     margin: 0 auto;
 }
 .main-container {
+    position: relative;
     padding-top: 5px;
     min-height: calc(100vh - 40px);
     display: flex;
@@ -75,6 +76,33 @@ h1 {
 
 .volume-mute {
     background-image: url("./assets/svg/vol-mute.svg");
+}
+
+.game-content{
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.best,
+.last{
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.content-block{
+    display: flex;
+}
+
+.total-score{
+    width: 250px;
+    height: 450px;
+    border: 1px solid red;
+}
+
+.fake-block{
+    visibility: hidden;
 }
 
 .menu{
@@ -219,7 +247,7 @@ h1 {
 }
 
 .game-field {
-    display: none;
+    display: flex;
     align-items: center;
     flex-direction: column;
     height: 500px;

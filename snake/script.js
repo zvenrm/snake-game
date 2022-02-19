@@ -5,7 +5,6 @@ const controls = document.querySelector('.controls')
 const volButtons = document.querySelector('.volume-buttons')
 const volPause = document.querySelector('.volume-pause')
 const volUp = document.querySelector('.volume-up')
-const gameField = document.querySelector('.game-field')
 const canvas = document.querySelector('.canvas')
 const ctx = canvas.getContext('2d')
 const showScore = document.querySelector('.score-val')
@@ -26,6 +25,21 @@ const resultField = document.querySelector('.result-field')
 const winLose = document.querySelector('.win-lose')
 const speedInput = document.querySelector('.speed-input')
 const speedVal = document.querySelector('.speed-val')
+const gameContent = document.querySelector('.game-content')
+const currTable = document.querySelector('.score-list')
+const bestVal = document.querySelector('.best-val')
+
+
+function getLocalStorage() {
+    if(localStorage.getItem('table')){
+        localStorage.getItem('table').split(',').forEach(el => {
+            let par = document.createElement('p')
+            par.innerHTML = `${localStorage.getItem('table').split(',').indexOf(el) + 1}. ${el}`
+            currTable.appendChild(par)
+        })
+    }
+}
+window.addEventListener('load', getLocalStorage)
 
 audio.volume = 0.2
 let cellSize = 20 //размер ячейки
@@ -33,33 +47,16 @@ let cellCnt = canvas.width / cellSize //количество ячеек в ка�
 let dir,
     score = 0,
     pause,
-    checkKey = 0
-
-speedInput.addEventListener('input', () => {
-    if (speedInput.value === '1'){
-        speed = 200
-        speedVal.textContent = '10'
-        clearInterval(game)
-        game = setInterval(gameUpdate, speed)
-    }
-    else if (speedInput.value === '3'){
-        speed = 80
-        speedVal.textContent = '30'
-        clearInterval(game)
-        game = setInterval(gameUpdate, speed)
-    }
-    else if(speedInput.value === '2'){
-        speed = 130
-        speedVal.textContent = '20'
-        clearInterval(game)
-        game = setInterval(gameUpdate, speed)
-    }
-})
-
-let speed = 130
-let redColor = [255, 0, 0]
-let greenColor = [0, 163, 0]
-    //скорость змейки
+    checkKey = 0,
+    speed = 130,
+    redColor = [255, 0, 0],
+    greenColor = [0, 163, 0],
+    totalScore = localStorage.getItem('table') ? localStorage.getItem('table').split(',') : [],
+    best = localStorage.getItem('best') ? localStorage.getItem('best') : score
+bestVal.textContent = best
+console.log(best)
+console.log(totalScore)
+//скорость змейки
 let snakeSpeed = {
     x: 0,
     y: 0
@@ -70,7 +67,6 @@ let food = {
     x: Math.floor(Math.random() * cellCnt),
     y: Math.floor(Math.random() * cellCnt)
 }
-
 
 let snake = []
 
@@ -100,6 +96,7 @@ function drawSnake(){
             canvas.classList.add('canvas-none')
             resultField.classList.add('result-block')
             finalScore.textContent = score
+            scoreTableCreate()
         }
         else if(snakeWidth === cellCnt * cellCnt){
             clearInterval(game)
@@ -107,8 +104,41 @@ function drawSnake(){
             resultField.classList.add('result-block')
             finalScore.textContent = score
             winLose.textContent = 'You win!!!!'
+            scoreTableCreate()
         }
     }
+}
+
+//создание таблицы счета
+function scoreTableCreate(){
+    if (bestVal.textContent.length === 0){
+        bestVal.textContent = score
+        best = score
+    }
+    else if(+bestVal.textContent < score){
+        bestVal.textContent = score
+        best = score
+    }
+    
+    if(totalScore.length < 10){
+        totalScore.push(score)
+        let par = document.createElement('p')
+        par.innerHTML = `${totalScore.length}. ${score}`
+        currTable.appendChild(par)
+    }
+    else if (totalScore.length === 10){
+        totalScore.shift()
+        totalScore.push(score)
+        let childrens = [...currTable.children]
+        let i = 0
+        childrens.forEach(el => {
+            el.innerHTML = `${i + 1}. ${totalScore[i]}`
+            i++
+        })
+    }
+    
+
+    console.log(totalScore)
 }
 
 //рисование еды
@@ -406,7 +436,7 @@ menuBtn.addEventListener('click', () => {
     clearInterval(game)
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     menu.classList.remove('menu-none')
-    gameField.classList.remove('game-block')
+    gameContent.classList.remove('content-block')
     resultField.classList.remove('result-block')
     canvas.classList.remove('canvas-none')
     pauseBtn.textContent = 'Pause'
@@ -442,7 +472,7 @@ menuPlayBtn.addEventListener('click', () => {
         audio.play()
     }
     menu.classList.add('menu-none')
-    gameField.classList.add('game-block')
+    gameContent.classList.add('content-block')
     volButtons.classList.add('volume-block')
     
 })
@@ -501,3 +531,30 @@ volUp.addEventListener('click', () => {
         audio.muted = false
     }
 })
+
+speedInput.addEventListener('input', () => {
+    if (speedInput.value === '1'){
+        speed = 200
+        speedVal.textContent = '10'
+        clearInterval(game)
+        game = setInterval(gameUpdate, speed)
+    }
+    else if (speedInput.value === '3'){
+        speed = 80
+        speedVal.textContent = '30'
+        clearInterval(game)
+        game = setInterval(gameUpdate, speed)
+    }
+    else if(speedInput.value === '2'){
+        speed = 130
+        speedVal.textContent = '20'
+        clearInterval(game)
+        game = setInterval(gameUpdate, speed)
+    }
+})
+
+function setLocalStorage() {
+    localStorage.setItem('best', best)
+    localStorage.setItem('table', totalScore)
+}
+window.addEventListener('beforeunload', setLocalStorage)
