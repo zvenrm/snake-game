@@ -1,2 +1,1 @@
-# zvenrm-JSFEPRESCHOOL
-Private repository for @zvenrm
+https://zvenrm.github.io/snake-game/snake/
